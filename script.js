@@ -81,9 +81,8 @@ function onSubmitGetWeatherInfo(e) {
             .then(data => {
                 cityName.innerText = `${data.name ? data.name : (alert("Invalid Input"), window.location.reload())}`;
                 let formattedTime = `[${month}/${day}/${year}] [${hours}.${minutes}${period}] `;
-
                 // get the current item in localstorage and set that to historyArr
-                if (historyArr.length !== 0) {
+                if (localStorage.getItem("historyArr").split(',').length > 0) {
                     historyArr = localStorage.getItem("historyArr").split(',')
                     historyArr.unshift(`${formattedTime}${sessionStorage.getItem("selectedCity")} `);
                     localStorage.setItem("historyArr", historyArr)
