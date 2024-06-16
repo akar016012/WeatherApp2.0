@@ -20,11 +20,11 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                 oninput="searchFunc()">
             <button class="btn btn-success my-2 mx-4" type="submit"
-                onclick="onSubmitGetWeatherInfo('ann arbor')">Submit</button>
+                onclick="onSubmitGetWeatherInfo(this)">Submit</button>
         </div>
         <div class="autoCompleteCities fw-bold fs-5 py-2 d-none">
         </div>
-        <div class="card mx-auto" style="width: 18rem;">
+        <div class="card mx-auto" style="width: 25rem;">
             <div class="cityName fw-bold my-4 text-center">Weather App 2.0</div>
             <div class="cityTemp fw-bold my-2 text-center">🌞🌧️❄️</div>
             <div class="emos text-center"></div>
@@ -32,9 +32,13 @@
             <div class="windSpeed fw-bold text-center py-2 fs-5"></div>
             <div class="visibility fw-bold text-center py-2 fs-5"></div>
         </div>
-        <div class="text-center my-5 fw-bold fs-5 text-decoration-underline">History</div>
-        <div class="history text-center">
+        <div class="text-center mt-5 fw-bold fs-5 text-decoration-underline">History</div>
+        <div class="clearAll text-center mt-2">
+            <button class="btn btn-danger text-center" onclick="clearAllHistory()">
+                Clear All
+            </button>
         </div>
+        <div class="history text-center mt-4"></div>
     </div>
 </body>
 

@@ -82,7 +82,7 @@ function onSubmitGetWeatherInfo(e) {
                 cityName.innerText = `${data.name ? data.name : (alert("Invalid Input"), window.location.reload())}`;
                 let formattedTime = `[${month}/${day}/${year}] [${hours}.${minutes}${period}] `;
                 // get the current item in localstorage and set that to historyArr
-                if (localStorage.getItem("historyArr").split(',').length > 0) {
+                if (localStorage.getItem("historyArr") !== null) {
                     historyArr = localStorage.getItem("historyArr").split(',')
                     historyArr.unshift(`${formattedTime}${sessionStorage.getItem("selectedCity")} `);
                     localStorage.setItem("historyArr", historyArr)
@@ -103,8 +103,8 @@ function onSubmitGetWeatherInfo(e) {
                 }
                 emos.innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" style="width: 2em"></img>`
                 desc.innerText = toTitleCase(data.weather[0].description);
-                windSpeed.innerHTML = `Wind Speed: ${data.wind.speed} MPH`
-                visibility.innerHTML = `Visibility: ${(data.visibility) / 1000} Miles`
+                windSpeed.innerHTML = `Wind Speed: ${Math.ceil(data.wind.speed)} mph, ${(Math.ceil((data.wind.speed) / 1.151))} kts`
+                visibility.innerHTML = `Visibility: ${(data.visibility) / 1000} Statute Miles`
                 // reset search value
                 searchValue.value = ''
             })
@@ -126,28 +126,32 @@ function setHistory() {
 }
 
 function deleteHistory(e) {
-    let confirm = window.confirm("Are You Sure?");
-    if (confirm) {
-        let text = e.innerText.slice(0, -1); // remove the last character
-        let getHistory = localStorage.getItem("historyArr");
-        if (getHistory) {
-            let getHistoryArr = getHistory.split(',');
-            // loop through the array
-            for (let i = 0; i < getHistoryArr.length; i++) {
-                // if an item matches the text remove it
-                if (getHistoryArr[i] === text) {
-                    getHistoryArr.splice(i, 1);
-                    break;
-                }
+    let text = e.innerText.slice(0, -1); // remove the last character
+    let getHistory = localStorage.getItem("historyArr");
+    if (getHistory) {
+        let getHistoryArr = getHistory.split(',');
+        // loop through the array
+        for (let i = 0; i < getHistoryArr.length; i++) {
+            // if an item matches the text remove it
+            if (getHistoryArr[i] === text) {
+                getHistoryArr.splice(i, 1);
+                break;
             }
-            // set the updated array back to localstorage
-            localStorage.setItem("historyArr", getHistoryArr.join(','));
-            setHistory()
         }
-        if (localStorage.getItem("historyArr") == '') {
-            localStorage.removeItem("historyArr")
-            location.reload()
-        }
+        // set the updated array back to localstorage
+        localStorage.setItem("historyArr", getHistoryArr.join(','));
+        setHistory()
+    }
+    if (localStorage.getItem("historyArr") == '') {
+        localStorage.removeItem("historyArr")
+        location.reload()
+    }
+}
+
+function clearAllHistory() {
+    if (window.confirm("Are You Sure?")) {
+        localStorage.removeItem("historyArr")
+        location.reload()
     }
 }
 
