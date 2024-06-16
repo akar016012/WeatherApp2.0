@@ -7,7 +7,28 @@ let emos = document.querySelector('.emos')
 let desc = document.querySelector('.desc')
 let windSpeed = document.querySelector('.windSpeed')
 let visibility = document.querySelector('.visibility')
+let history = document.querySelector('.history')
+let historyArr = []
 let selectedCity = ''
+let date = new Date();
+let hours = date.getHours();
+let minutes = date.getMinutes();
+let day = date.getDate();
+let month = date.getMonth() + 1; // JavaScript months are 0-11
+let year = date.getFullYear();
+setHistory()
+
+// Add leading zeros to day and month if they are less than 10
+if (day < 10) day = '0' + day;
+if (month < 10) month = '0' + month;
+
+// Convert 24 hour format to 12 hour format
+let period = hours >= 12 ? 'pm' : 'am';
+hours = hours % 12;
+hours = hours ? hours : 12; // the hour '0' should be '12'
+
+// Add leading zero to minutes if they are less than 10
+minutes = minutes < 10 ? '0' + minutes : minutes;
 
 function searchFunc() {
     autoCompleteCities.innerHTML = ''; // Clear the previous results
@@ -38,6 +59,7 @@ function searchFunc() {
 }
 
 function chooseCity(e) {
+    sessionStorage.setItem("selectedCity", `[${e.innerText.split(",")[0]}] [${e.innerText.split(",")[1].trim()}]`)
     selectedCity = (e.innerText).split(",")[0]
     searchValue.value = `${selectedCity}`
     autoCompleteCities.classList.add('d-none')
@@ -57,6 +79,14 @@ function onSubmitGetWeatherInfo(e) {
             .then(response => response.json())
             .then(data => {
                 cityName.innerText = `${data.name ? data.name : (alert("Invalid Input"), window.location.reload())}`;
+                let formattedTime = `[${month}/${day}/${year}] [${hours}.${minutes}${period}] `;
+
+                // get the current item in localstorage and set that to historyArr
+                historyArr = localStorage.getItem("historyArr").split(',')
+                historyArr.unshift(`${formattedTime} ${sessionStorage.getItem("selectedCity")} `);
+                localStorage.setItem("historyArr", historyArr)
+                setHistory()
+
                 cityTemp.innerHTML = `${data.main.temp ? Math.floor((data.main.temp)) : (alert("Invalid Input"), window.location.reload())}°`
                 if (Math.floor((data.main.temp)) >= 68) {
                     card.style.background = `linear-gradient(to bottom, skyblue, orange)`
@@ -74,5 +104,19 @@ function onSubmitGetWeatherInfo(e) {
     } else {
         // Handle empty or invalid input
         (alert("Invalid Input"), window.location.reload())
+    }
+}
+
+function setHistory() {
+    let getHistory = localStorage.getItem("historyArr")
+    if (getHistory) {
+        let getHistoryArr = getHistory.split(",")
+        history.innerHTML = ''
+        getHistoryArr.forEach(element => {
+            history.innerHTML += `<p>${element}</p>`
+        });
+    }
+    else {
+        localStorage.setItem("historyArr", historyArr)
     }
 }
