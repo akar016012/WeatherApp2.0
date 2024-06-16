@@ -1,0 +1,44 @@
+// https://api.openweathermap.org/data/2.5/weather?appid=df22cc6d986066e36e5c9fca1db5de13&q=Ann%20Arbor&units=imperial
+{
+  "coord": {
+    "lon": -83.7409,
+    "lat": 42.2776
+  },
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 83.01,
+    "feels_like": 82.08,
+    "temp_min": 80.31,
+    "temp_max": 84.9,
+    "pressure": 1017,
+    "humidity": 38
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 11.5,
+    "deg": 180
+  },
+  "clouds": {
+    "all": 0
+  },
+  "dt": 1718561890,
+  "sys": {
+    "type": 2,
+    "id": 2001847,
+    "country": "US",
+    "sunrise": 1718531876,
+    "sunset": 1718586822
+  },
+  "timezone": -14400,
+  "id": 4984247,
+  "name": "Ann Arbor",
+  "cod": 200
+}

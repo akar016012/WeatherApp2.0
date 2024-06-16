@@ -1,0 +1,65 @@
+body {
+    background-color: rgb(222, 230, 234);
+}
+
+.card {
+    background: rgb(178, 235, 131);
+    margin-top: 10vh;
+    box-shadow: 3px 3px 5px rgb(163, 162, 162);
+}
+
+.cityName {
+    font-size: 2em;
+}
+
+.cityTemp {
+    font-size: 4em;
+}
+
+.emos {
+    font-size: 5em;
+}
+
+.autoCompleteChild {
+    cursor: pointer;
+    padding-left: 0.5em;
+    text-wrap: nowrap;
+}
+
+.autoCompleteCities p:hover {
+    color: rgb(124, 186, 96);
+}
+
+.autoCompleteCities {
+    max-height: 200px;
+    overflow: auto;
+    width: 90%;
+    border-bottom: 2px solid rgb(124, 186, 96);
+    ;
+}
+
+/* For Webkit browsers like Chrome, Safari */
+.autoCompleteCities::-webkit-scrollbar {
+    width: 10px;
+    /* Adjust width of scrollbar */
+}
+
+.autoCompleteCities::-webkit-scrollbar-track {
+    background: transparent;
+    /* Remove scrollbar background */
+}
+
+.autoCompleteCities::-webkit-scrollbar-thumb {
+    background-color: rgb(167, 203, 150);
+    /* Scrollbar color */
+    border: none;
+    /* Remove scrollbar border */
+}
+
+/* For Firefox */
+.autoCompleteCities {
+    scrollbar-width: thin;
+    /* Adjust width of scrollbar */
+    scrollbar-color: rgb(167, 203, 150) transparent;
+    /* Scrollbar color and track color */
+}
