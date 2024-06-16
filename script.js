@@ -16,7 +16,6 @@ let minutes = date.getMinutes();
 let day = date.getDate();
 let month = date.getMonth() + 1; // JavaScript months are 0-11
 let year = date.getFullYear();
-setHistory()
 
 // Add leading zeros to day and month if they are less than 10
 if (day < 10) day = '0' + day;
@@ -29,6 +28,8 @@ hours = hours ? hours : 12; // the hour '0' should be '12'
 
 // Add leading zero to minutes if they are less than 10
 minutes = minutes < 10 ? '0' + minutes : minutes;
+
+setHistory()
 
 function searchFunc() {
     autoCompleteCities.innerHTML = ''; // Clear the previous results
@@ -82,10 +83,17 @@ function onSubmitGetWeatherInfo(e) {
                 let formattedTime = `[${month}/${day}/${year}] [${hours}.${minutes}${period}] `;
 
                 // get the current item in localstorage and set that to historyArr
-                historyArr = localStorage.getItem("historyArr").split(',')
-                historyArr.unshift(`${formattedTime} ${sessionStorage.getItem("selectedCity")} `);
-                localStorage.setItem("historyArr", historyArr)
-                setHistory()
+                if (historyArr.length !== 0) {
+                    historyArr = localStorage.getItem("historyArr").split(',')
+                    historyArr.unshift(`${formattedTime}${sessionStorage.getItem("selectedCity")} `);
+                    localStorage.setItem("historyArr", historyArr)
+                    setHistory()
+                }
+                else {
+                    historyArr = (`${formattedTime}${sessionStorage.getItem("selectedCity")} `);
+                    localStorage.setItem("historyArr", historyArr)
+                    setHistory()
+                }
 
                 cityTemp.innerHTML = `${data.main.temp ? Math.floor((data.main.temp)) : (alert("Invalid Input"), window.location.reload())}°`
                 if (Math.floor((data.main.temp)) >= 68) {
@@ -109,14 +117,36 @@ function onSubmitGetWeatherInfo(e) {
 
 function setHistory() {
     let getHistory = localStorage.getItem("historyArr")
-    if (getHistory) {
+    if (getHistory !== null) {
         let getHistoryArr = getHistory.split(",")
         history.innerHTML = ''
         getHistoryArr.forEach(element => {
-            history.innerHTML += `<p>${element}</p>`
+            history.innerHTML += `<p id="text" >${element} <span class="fw-bold text-danger px-2 fs-5" style="cursor: pointer" onclick="deleteHistory(document.getElementById('text'))">&times</span></p>`
         });
     }
-    else {
-        localStorage.setItem("historyArr", historyArr)
+}
+
+function deleteHistory(e) {
+    console.log(e);
+    let text = e.innerText.slice(0, -1); // remove the last character
+    let getHistory = localStorage.getItem("historyArr");
+    if (getHistory) {
+        let getHistoryArr = getHistory.split(',');
+        // loop through the array
+        for (let i = 0; i < getHistoryArr.length; i++) {
+            // if an item matches the text remove it
+            if (getHistoryArr[i] === text) {
+                getHistoryArr.splice(i, 1);
+                break;
+            }
+        }
+        // set the updated array back to localstorage
+        localStorage.setItem("historyArr", getHistoryArr.join(','));
+        setHistory()
+    }
+    if (localStorage.getItem("historyArr") == '') {
+        localStorage.removeItem("historyArr")
+        location.reload()
     }
 }
+
