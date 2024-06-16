@@ -52,7 +52,7 @@ function toTitleCase(str) {
 function onSubmitGetWeatherInfo(e) {
     // Check if searchValue.value is not empty and contains only letters and spaces
     if (searchValue.value !== "" && /^[A-Za-z\s]*$/.test(searchValue.value)) {
-        let apiStr = `https://api.openweathermap.org/data/2.5/weather?appid=${env.mySecret}&q=${selectedCity}&units=imperial`
+        let apiStr = `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.apikey}&q=${selectedCity}&units=imperial`
         fetch(apiStr)
             .then(response => response.json())
             .then(data => {
