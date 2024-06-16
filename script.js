@@ -100,7 +100,7 @@ function onSubmitGetWeatherInfo(e) {
                     card.style.background = `linear-gradient(to bottom, skyblue, orange)`
                 }
                 else {
-                    card.style.background = `linear-gradient(to bottom, skyblue, blue)`
+                    card.style.background = `linear-gradient(to bottom, skyblue, rgb(214, 210, 245))`
                 }
                 emos.innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" style="width: 2em"></img>`
                 desc.innerText = toTitleCase(data.weather[0].description);
@@ -127,26 +127,28 @@ function setHistory() {
 }
 
 function deleteHistory(e) {
-    console.log(e);
-    let text = e.innerText.slice(0, -1); // remove the last character
-    let getHistory = localStorage.getItem("historyArr");
-    if (getHistory) {
-        let getHistoryArr = getHistory.split(',');
-        // loop through the array
-        for (let i = 0; i < getHistoryArr.length; i++) {
-            // if an item matches the text remove it
-            if (getHistoryArr[i] === text) {
-                getHistoryArr.splice(i, 1);
-                break;
+    let confirm = window.confirm("Are You Sure?");
+    if (confirm) {
+        let text = e.innerText.slice(0, -1); // remove the last character
+        let getHistory = localStorage.getItem("historyArr");
+        if (getHistory) {
+            let getHistoryArr = getHistory.split(',');
+            // loop through the array
+            for (let i = 0; i < getHistoryArr.length; i++) {
+                // if an item matches the text remove it
+                if (getHistoryArr[i] === text) {
+                    getHistoryArr.splice(i, 1);
+                    break;
+                }
             }
+            // set the updated array back to localstorage
+            localStorage.setItem("historyArr", getHistoryArr.join(','));
+            setHistory()
         }
-        // set the updated array back to localstorage
-        localStorage.setItem("historyArr", getHistoryArr.join(','));
-        setHistory()
-    }
-    if (localStorage.getItem("historyArr") == '') {
-        localStorage.removeItem("historyArr")
-        location.reload()
+        if (localStorage.getItem("historyArr") == '') {
+            localStorage.removeItem("historyArr")
+            location.reload()
+        }
     }
 }
 
