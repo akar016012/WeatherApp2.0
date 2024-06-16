@@ -63,3 +63,12 @@ body {
     scrollbar-color: rgb(167, 203, 150) transparent;
     /* Scrollbar color and track color */
 }
+
+.contact {
+    color: rgb(255, 255, 255)
+}
+
+.contact-email {
+    text-decoration: none;
+    font-size: larger;
+}
