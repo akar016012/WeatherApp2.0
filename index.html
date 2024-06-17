@@ -12,11 +12,16 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
     <script src="./script.js" defer></script>
+    <script src="./components/Nav/nav.js"></script>
     <link rel="stylesheet" href="./style.css">
     <title>Weather App 2.0</title>
 </head>
 
 <body>
+    <div>
+        <HeaderNav />
+    </div>
+
     <div class="container border-none">
         <div class="searchBox text-center d-flex mx-auto mt-4 w-full">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
@@ -34,6 +39,7 @@
             <div class="windSpeed fw-bold text-center py-2 fs-5"></div>
             <div class="visibility fw-bold text-center py-2 fs-5"></div>
         </div>
+
         <div class="text-center mt-5 fw-bold fs-5 text-decoration-underline">History</div>
         <div class="clearAll text-center mt-2">
             <button class="btn btn-danger text-center" onclick="clearAllHistory()">
