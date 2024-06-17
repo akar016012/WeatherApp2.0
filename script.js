@@ -158,6 +158,6 @@ function clearAllHistory() {
 }
 
 function showFiveDayData(){
-    location.href = "/fiveDaysForecast.html";
+    location.href = "fiveDaysForecast.html";
 }
 
