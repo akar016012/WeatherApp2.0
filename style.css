@@ -72,3 +72,12 @@ body {
     text-decoration: none;
     font-size: larger;
 }
+
+.fiveDayBtn{
+    background-color: rgb(178, 235, 131);
+    border: 1px solid black;
+}
+.fiveDayBtn:hover{
+    background-color: rgb(121, 203, 55);
+    border: 2px solid rgb(63, 63, 63);
+}

@@ -8,6 +8,7 @@ let desc = document.querySelector('.desc')
 let windSpeed = document.querySelector('.windSpeed')
 let visibility = document.querySelector('.visibility')
 let history = document.querySelector('.history')
+let fivedayBtn = document.querySelector('.fiveDayBtn')
 let historyArr = []
 let selectedCity = ''
 let date = new Date();
@@ -75,7 +76,7 @@ function toTitleCase(str) {
 function onSubmitGetWeatherInfo(e) {
     // Check if searchValue.value is not empty and contains only letters and spaces
     if (searchValue.value !== "" && /^[A-Za-z\s]*$/.test(searchValue.value)) {
-        let apiStr = `https://api.openweathermap.org/data/2.5/weather?appid=df22cc6d986066e36e5c9fca1db5de13&q=${selectedCity}&units=imperial`
+        let apiStr = `https://api.openweathermap.org/data/2.5/weather?appid=df22cc6d986066e36e5c9fca1db5de13&q=${selectedCity},US&units=imperial`
         fetch(apiStr)
             .then(response => response.json())
             .then(data => {
@@ -107,6 +108,7 @@ function onSubmitGetWeatherInfo(e) {
                 visibility.innerHTML = `Visibility: ${(data.visibility) / 1000} Statute Miles`
                 // reset search value
                 searchValue.value = ''
+                fivedayBtn.classList.remove("d-none")
             })
     } else {
         // Handle empty or invalid input
@@ -153,5 +155,9 @@ function clearAllHistory() {
         localStorage.removeItem("historyArr")
         location.reload()
     }
+}
+
+function showFiveDayData(){
+    location.href = "/fiveDaysForecast.html";
 }
 
