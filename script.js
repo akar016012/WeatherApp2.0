@@ -10,13 +10,14 @@ let visibility = document.querySelector('.visibility')
 let history = document.querySelector('.history')
 let fivedayBtn = document.querySelector('.fiveDayBtn')
 let historyArr = []
-let selectedCity = ''
 let date = new Date();
 let hours = date.getHours();
 let minutes = date.getMinutes();
 let day = date.getDate();
 let month = date.getMonth() + 1; // JavaScript months are 0-11
 let year = date.getFullYear();
+let selectedCity = ''
+let selectedState = ''
 
 // Add leading zeros to day and month if they are less than 10
 if (day < 10) day = '0' + day;
@@ -63,6 +64,7 @@ function searchFunc() {
 function chooseCity(e) {
     sessionStorage.setItem("selectedCity", `[${e.innerText.split(",")[0]}] [${e.innerText.split(",")[1].trim()}]`)
     selectedCity = (e.innerText).split(",")[0]
+    selectedState = e.innerText.split(",")[1].trim()
     searchValue.value = `${selectedCity}`
     autoCompleteCities.classList.add('d-none')
 }
@@ -76,7 +78,7 @@ function toTitleCase(str) {
 function onSubmitGetWeatherInfo(e) {
     // Check if searchValue.value is not empty and contains only letters and spaces
     if (searchValue.value !== "" && /^[A-Za-z\s]*$/.test(searchValue.value)) {
-        let apiStr = `https://api.openweathermap.org/data/2.5/weather?appid=df22cc6d986066e36e5c9fca1db5de13&q=${selectedCity},US&units=imperial`
+        let apiStr = `https://api.openweathermap.org/data/2.5/weather?appid=df22cc6d986066e36e5c9fca1db5de13&q=${selectedCity},${selectedState},US&units=imperial`
         fetch(apiStr)
             .then(response => response.json())
             .then(data => {
