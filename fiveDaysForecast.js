@@ -2,17 +2,13 @@ let currentSelection = sessionStorage.getItem("selectedCity")
 let cardContainer = document.querySelector('.row')
 let chosenCity = document.querySelector('.chosenCity')
 if (currentSelection) {
-    currentSelection = currentSelection.replace("[", "")
-    currentSelection = currentSelection.replace("]", "")
-    currentSelection = currentSelection.split(" ")
-    currentState = currentSelection[1].replace("[","")
-    currentState = currentState.replace("]","")
-    console.log(currentSelection);
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?appid=df22cc6d986066e36e5c9fca1db5de13&q=${currentSelection[0]},${currentState},US&units=imperial`)
+    let currCity = sessionStorage.getItem("SessionCity")
+    let currState = sessionStorage.getItem("SessionState")
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?appid=df22cc6d986066e36e5c9fca1db5de13&q=${currCity},${currState},US&units=imperial`)
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            chosenCity.innerText = `${currentSelection[0]}, ${currentState}`
+            chosenCity.innerText = `${currCity}, ${currState}`
             for (let i = 0; i <= data.list.length; i++) {
                 cardContainer.innerHTML += `
                 <div class="card mx-auto mb-3" style="width: 20rem; background: ${Math.floor((data.list[i].main.temp)) >= 68 ? "orange" : "skyblue"}">

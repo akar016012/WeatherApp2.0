@@ -64,7 +64,9 @@ function searchFunc() {
 function chooseCity(e) {
     sessionStorage.setItem("selectedCity", `[${e.innerText.split(",")[0]}] [${e.innerText.split(",")[1].trim()}]`)
     selectedCity = (e.innerText).split(",")[0]
+    sessionStorage.setItem("SessionCity",selectedCity)
     selectedState = e.innerText.split(",")[1].trim()
+    sessionStorage.setItem("SessionState",selectedState)
     searchValue.value = `${selectedCity}`
     autoCompleteCities.classList.add('d-none')
 }
