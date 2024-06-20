@@ -187,15 +187,18 @@ function showHourlyData() {
 }
 
 function showIframeBasedOnActive() {
+    const iframeContainer = document.querySelector('.iframe-hourly-forecast');
+
     if (hourlyDayBtn.classList.contains("active-btn")) {
-        document.querySelector('.iframe-hourly-forecast').innerHTML =
+        iframeContainer.innerHTML =
             `
         <iframe src="./hourlyForecast.html" width="100%" height="500px" frameborder="0"></iframe>
-        `
+        `;
+        // Scroll to the iframe
+        iframeContainer.scrollIntoView({ behavior: 'smooth' });
     } else {
-        document.querySelector('.iframe-hourly-forecast').innerHTML =
-            `
-        `
+        iframeContainer.innerHTML = '';
     }
 }
+
 
