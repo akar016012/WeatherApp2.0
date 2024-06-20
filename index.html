@@ -21,9 +21,12 @@
     <div>
         <HeaderNav />
     </div>
+    <div class="sun-status text-center text-xl-end text-xxl-end m-2 fs-5  ">
+        🌅[Sunrise Time] 🌇 [Sunset Time]
+    </div>
 
     <div class="container border-none">
-        <div class="searchBox text-center d-flex mx-auto mt-4 w-full">
+        <div class="searchBox text-center d-flex flex-column flex-xl-row flex-xxl-row mx-auto mt-4 w-full">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                 oninput="searchFunc()">
             <button class="btn btn-success my-2 mx-4" type="submit"
@@ -35,10 +38,12 @@
             <div class="cityName fw-bold my-4 text-center">Weather App 2.0</div>
             <div class="cityTemp fw-bold my-2 text-center">🌞🌧️❄️</div>
             <div class="emos text-center"></div>
-            <div class="desc fw-bold text-center py-2 fs-5"></div>
+            <div class="desc fw-bold text-center py-2 fs-5">ENTER CITY IN THE SEARCH FOR WEATHER STATUS
+            </div>
             <div class="windSpeed fw-bold text-center py-2 fs-5"></div>
             <div class="visibility fw-bold text-center py-2 fs-5"></div>
-            <div class="btn fiveDayBtn m-2 d-none fs-4 text-black fw-bold" onclick="showFiveDayData()">5 Days Forecast</div>
+            <div class="btn fiveDayBtn m-2 d-none fs-4 text-black fw-bold" onclick="showFiveDayData()">5 Days Forecast
+            </div>
         </div>
 
         <div class="text-center mt-5 fw-bold fs-5 text-decoration-underline">History</div>

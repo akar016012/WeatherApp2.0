@@ -9,6 +9,8 @@ let windSpeed = document.querySelector('.windSpeed')
 let visibility = document.querySelector('.visibility')
 let history = document.querySelector('.history')
 let fivedayBtn = document.querySelector('.fiveDayBtn')
+let sunStatus = document.querySelector('.sun-status')
+
 let historyArr = []
 let date = new Date();
 let hours = date.getHours();
@@ -64,9 +66,9 @@ function searchFunc() {
 function chooseCity(e) {
     sessionStorage.setItem("selectedCity", `[${e.innerText.split(",")[0]}] [${e.innerText.split(",")[1].trim()}]`)
     selectedCity = (e.innerText).split(",")[0]
-    sessionStorage.setItem("SessionCity",selectedCity)
+    sessionStorage.setItem("SessionCity", selectedCity)
     selectedState = e.innerText.split(",")[1].trim()
-    sessionStorage.setItem("SessionState",selectedState)
+    sessionStorage.setItem("SessionState", selectedState)
     searchValue.value = `${selectedCity}`
     autoCompleteCities.classList.add('d-none')
 }
@@ -110,6 +112,16 @@ function onSubmitGetWeatherInfo(e) {
                 desc.innerText = toTitleCase(data.weather[0].description);
                 windSpeed.innerHTML = `Wind Speed: ${Math.ceil(data.wind.speed)} mph, ${(Math.ceil((data.wind.speed) / 1.151))} kts`
                 visibility.innerHTML = `Visibility: ${(data.visibility) / 1000} Statute Miles`
+
+                // show sun rise and sun set times
+                // Create new Date instances
+                var sunrise_date = new Date(data.sys.sunrise * 1000);
+                var sunset_date = new Date(data.sys.sunset * 1000);
+
+                // Format to string
+                var sunrise_str = sunrise_date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                var sunset_str = sunset_date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                sunStatus.innerHTML = `🌅 ${sunrise_str} 🌇 ${sunset_str}`
                 // reset search value
                 searchValue.value = ''
                 fivedayBtn.classList.remove("d-none")
@@ -161,7 +173,7 @@ function clearAllHistory() {
     }
 }
 
-function showFiveDayData(){
+function showFiveDayData() {
     location.href = "fiveDaysForecast.html";
 }
 
