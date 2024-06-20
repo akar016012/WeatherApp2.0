@@ -127,6 +127,7 @@ function onSubmitGetWeatherInfo(e) {
                 searchValue.value = ''
                 fivedayBtn.classList.remove("d-none")
                 hourlyDayBtn.classList.remove("d-none")
+                fivedayBtn.classList.remove("active-btn")
                 hourlyDayBtn.classList.remove("active-btn")
                 showIframeBasedOnActive()
             })
@@ -178,10 +179,14 @@ function clearAllHistory() {
 }
 
 function showFiveDayData() {
-    location.href = "fiveDaysForecast.html";
+    fivedayBtn.classList.toggle('active-btn')
+    hourlyDayBtn.classList.remove('active-btn')
+    console.log(hourlyDayBtn.classList.contains("active-btn"));
+    showIframeBasedOnActive()
 }
 function showHourlyData() {
     hourlyDayBtn.classList.toggle('active-btn')
+    fivedayBtn.classList.remove('active-btn')
     console.log(hourlyDayBtn.classList.contains("active-btn"));
     showIframeBasedOnActive()
 }
@@ -196,7 +201,16 @@ function showIframeBasedOnActive() {
         `;
         // Scroll to the iframe
         iframeContainer.scrollIntoView({ behavior: 'smooth' });
-    } else {
+    }
+    else if (fivedayBtn.classList.contains("active-btn")) {
+        iframeContainer.innerHTML =
+            `
+        <iframe src="./fiveDaysForecast.html" width="100%" height="500px" frameborder="0"></iframe>
+        `;
+        // Scroll to the iframe
+        iframeContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+    else {
         iframeContainer.innerHTML = '';
     }
 }
