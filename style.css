@@ -75,10 +75,17 @@ body {
     font-size: larger;
 }
 
-.fiveDayBtn {
+.fiveDayBtn,
+.hourlyDayBtn {
     background-color: rgb(158, 189, 223);
     font-family: 'Birdseye', sans-serif;
 }
 
-.fiveDayBtn:hover {
+.fiveDayBtn:hover,
+.hourlyDayBtn:hover {
     background-color: rgb(114, 157, 203);
+}
+
+.active-btn {
+    background-color: rgb(114, 157, 203);
+}

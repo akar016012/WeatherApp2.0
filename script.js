@@ -9,6 +9,7 @@ let windSpeed = document.querySelector('.windSpeed')
 let visibility = document.querySelector('.visibility')
 let history = document.querySelector('.history')
 let fivedayBtn = document.querySelector('.fiveDayBtn')
+let hourlyDayBtn = document.querySelector('.hourlyDayBtn')
 let sunStatus = document.querySelector('.sun-status')
 
 let historyArr = []
@@ -125,6 +126,9 @@ function onSubmitGetWeatherInfo(e) {
                 // reset search value
                 searchValue.value = ''
                 fivedayBtn.classList.remove("d-none")
+                hourlyDayBtn.classList.remove("d-none")
+                hourlyDayBtn.classList.remove("active-btn")
+                showIframeBasedOnActive()
             })
     } else {
         // Handle empty or invalid input
@@ -175,5 +179,23 @@ function clearAllHistory() {
 
 function showFiveDayData() {
     location.href = "fiveDaysForecast.html";
+}
+function showHourlyData() {
+    hourlyDayBtn.classList.toggle('active-btn')
+    console.log(hourlyDayBtn.classList.contains("active-btn"));
+    showIframeBasedOnActive()
+}
+
+function showIframeBasedOnActive() {
+    if (hourlyDayBtn.classList.contains("active-btn")) {
+        document.querySelector('.iframe-hourly-forecast').innerHTML =
+            `
+        <iframe src="./hourlyForecast.html" width="100%" height="500px" frameborder="0"></iframe>
+        `
+    } else {
+        document.querySelector('.iframe-hourly-forecast').innerHTML =
+            `
+        `
+    }
 }
 
