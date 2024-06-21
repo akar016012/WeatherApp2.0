@@ -201,6 +201,18 @@ function showHourlyData() {
     showMoreInfoDiv.classList.remove("d-none")
     window.scrollTo(0, 0);
 }
+function showRader() {
+    let mainDiv = document.querySelector('.main-div')
+    let showMoreInfoDiv = document.querySelector('.show-more-info-div')
+    const iframeContainer = document.querySelector('.iframe-hourly-forecast');
+    iframeContainer.innerHTML =
+        `
+        <iframe src="https://radar.weather.gov/" width="100%" height="800px" frameborder="0"></iframe>
+        `;
+    mainDiv.classList.add("d-none")
+    showMoreInfoDiv.classList.remove("d-none")
+    window.scrollTo(0, 0);
+}
 
 
 function onClickHistory() {
