@@ -18,48 +18,71 @@
 </head>
 
 <body>
-    <div>
-        <HeaderNav />
+    <div class="d-none history-div">
+        <div class="text-center text-md-end text-xl-end text-xxl-end">
+            <span class="fw-bold fs-3 me-md-1 me-xl-2 me-xxl-3 closeBtn" style="cursor: pointer;"
+                onclick="handleTimesClick()">
+                &times;
+            </span>
+        </div>
+        <div class="container">
+            <div class="text-center mt-5 fw-bold fs-5 text-decoration-underline">History</div>
+            <div class="clearAll text-center mt-2">
+                <button class="btn btn-danger text-center" onclick="clearAllHistory()">
+                    Clear All
+                </button>
+            </div>
+            <div class="history text-center my-5"></div>
+        </div>
     </div>
-    <div class="sun-status text-center text-xl-end text-xxl-end m-2 fs-5  ">
-        🌅[Sunrise Time] 🌇 [Sunset Time]
-    </div>
-
-    <div class="container border-none">
-        <div class="searchBox text-center d-flex flex-column flex-xl-row flex-xxl-row mx-auto mt-4 w-full">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                oninput="searchFunc()">
-            <button class="btn btn-success my-2 mx-4" type="submit"
-                onclick="onSubmitGetWeatherInfo(this)">Submit</button>
+    <div class="main-div">
+        <div>
+            <HeaderNav />
         </div>
-        <div class="autoCompleteCities fw-bold fs-5 py-2 d-none">
-        </div>
-        <div class="card mx-auto" style="width: 20rem;">
-            <div class="cityName fw-bold my-4 text-center">Weather App 2.0</div>
-            <div class="cityTemp fw-bold my-2 text-center">🌞🌧️❄️</div>
-            <div class="emos text-center"></div>
-            <div class="desc fw-bold text-center py-2 fs-5">ENTER CITY IN THE SEARCH FOR WEATHER STATUS
-            </div>
-            <div class="windSpeed fw-bold text-center py-2 fs-5"></div>
-            <div class="visibility fw-bold text-center py-2 fs-5"></div>
-            <div class="btn hourlyDayBtn m-2 d-none fs-4 text-black fw-bold" onclick="showHourlyData()">Hourly Forecast
-            </div>
-            <div class="btn fiveDayBtn m-2 d-none fs-4 text-black fw-bold" onclick="showFiveDayData()">5 Days Forecast
-            </div>
-        </div>
-        <div class="py-5 iframe-hourly-forecast">
+        <div class="sun-status text-center text-xl-end text-xxl-end m-2 fs-5  ">
+            🌅[Sunrise Time] 🌇 [Sunset Time]
         </div>
 
-        <div class="text-center mt-5 fw-bold fs-5 text-decoration-underline">History</div>
-        <div class="clearAll text-center mt-2">
-            <button class="btn btn-danger text-center" onclick="clearAllHistory()">
-                Clear All
-            </button>
+        <div class="container border-none">
+            <div class="searchBox text-center d-flex flex-column flex-xl-row flex-xxl-row mx-auto mt-4 w-full">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                    oninput="searchFunc()">
+                <div class="buttons d-flex flex-row justify-content-center">
+                    <button class="btn btn-success my-2 mx-4" type="submit"
+                        onclick="onSubmitGetWeatherInfo(this)">Submit</button>
+                    <button class="btn btn-danger my-2" onclick="onClickHistory()">History</button>
+                </div>
+            </div>
+            <div class="autoCompleteCities fw-bold fs-5 py-2 d-none">
+            </div>
+            <div class="card mx-auto" style="width: 20rem;">
+                <div class="cityName fw-bold my-4 text-center">Weather App 2.0</div>
+                <div class="cityTemp fw-bold my-2 text-center">🌞🌧️❄️</div>
+                <div class="emos text-center"></div>
+                <div class="desc fw-bold text-center py-2 fs-5">ENTER CITY IN THE SEARCH FOR WEATHER STATUS
+                </div>
+                <div class="windSpeed fw-bold text-center py-2 fs-5"></div>
+                <div class="visibility fw-bold text-center py-2 fs-5"></div>
+                <div class="btn hourlyDayBtn m-2 d-none fs-4 text-black fw-bold" onclick="showHourlyData()">Hourly
+                    Forecast
+                </div>
+                <div class="btn fiveDayBtn m-2 d-none fs-4 text-black fw-bold" onclick="showFiveDayData()">5 Days
+                    Forecast
+                </div>
+            </div>
         </div>
-        <div class="history text-center my-5"></div>
+        <div class="contact text-center me-4 fixed-bottom fs-6 fw-bold bg-black w-100">CANT FIND YOUR CITY? <a
+                class="contact-email" href="mailto:adityakar1998@gmail.com?subject=App : Weather App 2.0"> 📧</a></div>
     </div>
-    <div class="contact text-center me-4 fixed-bottom fs-6 fw-bold bg-black w-100">CANT FIND YOUR CITY? <a
-            class="contact-email" href="mailto:adityakar1998@gmail.com?subject=App : Weather App 2.0"> 📧</a></div>
+    <div class="show-more-info-div d-none " onclick="handleTimesClick()">
+        <div class="text-center text-md-end text-xl-end text-xxl-end">
+            <span class="fw-bold fs-3 me-md-1 me-xl-2 me-xxl-3 closeBtn" style="cursor: pointer;"
+                onclick="handleTimesClick()">
+                &times;
+            </span>
+        </div>
+        <div class="py-5 iframe-hourly-forecast"></div>
+    </div>
 </body>
 
 </html>

@@ -6,7 +6,7 @@ body {
 
 .card {
     background: rgb(178, 235, 131);
-    margin-top: 10vh;
+    margin-top: 2rem;
     box-shadow: 3px 3px 5px rgb(163, 162, 162);
 }
 
@@ -19,7 +19,7 @@ body {
 }
 
 .emos {
-    font-size: 5em;
+    font-size: 2em;
 }
 
 .autoCompleteChild {
@@ -88,4 +88,8 @@ body {
 
 .active-btn {
     background-color: rgb(114, 157, 203);
+}
+
+.closeBtn:hover {
+    color: maroon;
 }

@@ -127,8 +127,6 @@ function onSubmitGetWeatherInfo(e) {
                 searchValue.value = ''
                 fivedayBtn.classList.remove("d-none")
                 hourlyDayBtn.classList.remove("d-none")
-                fivedayBtn.classList.remove("active-btn")
-                hourlyDayBtn.classList.remove("active-btn")
                 showIframeBasedOnActive()
             })
     } else {
@@ -179,40 +177,45 @@ function clearAllHistory() {
 }
 
 function showFiveDayData() {
-    fivedayBtn.classList.toggle('active-btn')
-    hourlyDayBtn.classList.remove('active-btn')
-    console.log(hourlyDayBtn.classList.contains("active-btn"));
-    showIframeBasedOnActive()
+    let mainDiv = document.querySelector('.main-div')
+    let showMoreInfoDiv = document.querySelector('.show-more-info-div')
+    const iframeContainer = document.querySelector('.iframe-hourly-forecast');
+    iframeContainer.innerHTML =
+        `
+        <iframe src="./fiveDaysForecast.html" width="100%" height="800px" frameborder="0"></iframe>
+    `;
+    mainDiv.classList.add("d-none")
+    showMoreInfoDiv.classList.remove("d-none")
 }
 function showHourlyData() {
-    hourlyDayBtn.classList.toggle('active-btn')
-    fivedayBtn.classList.remove('active-btn')
-    console.log(hourlyDayBtn.classList.contains("active-btn"));
-    showIframeBasedOnActive()
+    let mainDiv = document.querySelector('.main-div')
+    let showMoreInfoDiv = document.querySelector('.show-more-info-div')
+    const iframeContainer = document.querySelector('.iframe-hourly-forecast');
+    iframeContainer.innerHTML =
+        `
+        <iframe src="./hourlyForecast.html" width="100%" height="800px" frameborder="0"></iframe>
+        `;
+    mainDiv.classList.add("d-none")
+    showMoreInfoDiv.classList.remove("d-none")
 }
 
-function showIframeBasedOnActive() {
-    const iframeContainer = document.querySelector('.iframe-hourly-forecast');
 
-    if (hourlyDayBtn.classList.contains("active-btn")) {
-        iframeContainer.innerHTML =
-            `
-        <iframe src="./hourlyForecast.html" width="100%" height="500px" frameborder="0"></iframe>
-        `;
-        // Scroll to the iframe
-        iframeContainer.scrollIntoView({ behavior: 'smooth' });
-    }
-    else if (fivedayBtn.classList.contains("active-btn")) {
-        iframeContainer.innerHTML =
-            `
-        <iframe src="./fiveDaysForecast.html" width="100%" height="500px" frameborder="0"></iframe>
-        `;
-        // Scroll to the iframe
-        iframeContainer.scrollIntoView({ behavior: 'smooth' });
-    }
-    else {
-        iframeContainer.innerHTML = '';
-    }
+function onClickHistory() {
+    let mainDiv = document.querySelector('.main-div')
+    let historyDiv = document.querySelector('.history-div')
+
+    mainDiv.classList.add('d-none')
+    historyDiv.classList.remove('d-none')
+}
+
+function handleTimesClick() {
+    let mainDiv = document.querySelector('.main-div')
+    let historyDiv = document.querySelector('.history-div')
+    let showMoreInfoDiv = document.querySelector('.show-more-info-div')
+
+    mainDiv.classList.remove('d-none')
+    showMoreInfoDiv.classList.add('d-none')
+    historyDiv.classList.add('d-none')
 }
 
 
