@@ -184,8 +184,10 @@ function showFiveDayData() {
         `
         <iframe src="./fiveDaysForecast.html" width="100%" height="800px" frameborder="0"></iframe>
     `;
+
     mainDiv.classList.add("d-none")
     showMoreInfoDiv.classList.remove("d-none")
+    window.scrollTo(0, 0);
 }
 function showHourlyData() {
     let mainDiv = document.querySelector('.main-div')
@@ -197,6 +199,7 @@ function showHourlyData() {
         `;
     mainDiv.classList.add("d-none")
     showMoreInfoDiv.classList.remove("d-none")
+    window.scrollTo(0, 0);
 }
 
 
